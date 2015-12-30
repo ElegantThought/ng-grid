@@ -371,9 +371,13 @@
               break;
             case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
             case 'application/vnd.ms-excel':
-                reader.onload = service.importXlsxClosure( grid )
-                reader.readAsBinaryString( fileObject );
-                return;
+                if(fileObject.name.split('.').pop().toLowerCase() === "csv") reader.onload = service.importCsvClosure( grid );
+                else {
+                  reader.onload = service.importXlsxClosure( grid )
+                  reader.readAsBinaryString( fileObject );
+                  return;
+                }
+                break;
             default:
               reader.onload = service.importCsvClosure( grid );
               break;
@@ -565,9 +569,12 @@
          * @param {Array} importArray the data that we want to import, as an array
          */
         createCsvObjects: function( grid, importArray ){
+          Array.prototype.isNull = function (){
+            return this.join().replace(/,/g,'').length === 0;
+          };
           // pull off header row and turn into headers
           var headerMapping = grid.options.importerProcessHeaders( grid, importArray.shift() );
-          if ( !headerMapping || headerMapping.length === 0 ){
+          if ( !headerMapping || headerMapping.isNull() || headerMapping.length === 0 ){
             service.alertError( grid, 'importer.noHeaders', 'Column names could not be derived, content was: ', importArray );
             return [];
           }
