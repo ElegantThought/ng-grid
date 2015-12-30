@@ -847,7 +847,7 @@
               if(range.e.c < C) range.e.c = C;
               cell_ref = XLSX.utils.encode_cell({c:C,r:R});
               if(exportData[R-1][C].value)
-                new_cell = {"v": exportData[R-1][C].value + ' ', "t": 's'};
+                new_cell = {"v": exportData[R-1][C].value + '', "t": 's'};
               else
                 new_cell = {"v": ' ', "t": 's'};
               ws[cell_ref] = new_cell;
