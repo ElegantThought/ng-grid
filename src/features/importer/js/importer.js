@@ -347,6 +347,16 @@
          * @param {File} fileObject the file we want to import, as returned from the File
          * javascript object
          */
+        /**
+         * @ngdoc function
+         * @name importThisFile
+         * @methodOf ui.grid.importer.service:uiGridImporterService
+         * @description Imports the provided file into the grid using the file object 
+         * provided.  Bypasses the grid menu
+         * @param {Grid} grid the grid we're importing into
+         * @param {File} fileObject the file we want to import, as returned from the File
+         * javascript object
+         */
         importThisFile: function ( grid, fileObject ) {
           if (!fileObject){
             gridUtil.logError( 'No file object provided to importThisFile, should be impossible, aborting');
@@ -359,12 +369,72 @@
             case 'application/json':
               reader.onload = service.importJsonClosure( grid );
               break;
+            case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+            case 'application/vnd.ms-excel':
+                reader.onload = service.importXlsxClosure( grid )
+                reader.readAsBinaryString( fileObject );
+                return;
             default:
               reader.onload = service.importCsvClosure( grid );
               break;
           }
           
           reader.readAsText( fileObject );
+        },
+        
+        
+        /**
+         * @ngdoc function
+         * @name importXlsxClosure
+         * @methodOf ui.grid.importer.service:uiGridImporterService
+         * @description Creates a function that imports a xlsx file into the grid
+         * (allowing it to be used in the reader.onload event)
+         * @param {Grid} grid the grid that we want to import into
+         * @param {FileObject} importFile the file that we want to import, as
+         * a file object
+         */
+        importXlsxClosure: function( grid ) {
+            return function( importFile ){
+                var importArray = service.parseXlsx( importFile );
+                if ( !importArray || importArray.length < 1 ){
+                    service.alertError( grid, 'importer.invalidXlsx', 'File could not be processed, is it valid spreadsheet? Content was: ', importFile.target.result );
+                    return;
+                }
+
+                var newObjects = service.createCsvObjects( grid, importArray );
+                if ( !newObjects || newObjects.length === 0 ){
+                    service.alertError( grid, 'importer.noObjects', 'Objects were not able to be derived, content was: ', importFile.target.result );
+                    return;
+                }
+
+                service.addObjects( grid, newObjects );
+            };
+        },
+
+
+        /**
+         * @ngdoc function
+         * @name parseXlsx
+         * @methodOf ui.grid.importer.service:uiGridImporterService
+         * @description Parses a xlsx file into an array of arrays using parseCsv, with the first
+         * array being the headers, and the remaining arrays being the data.
+         * The logic for this comes from https://github.com/SheetJS/js-xlsx/xlsx.js,
+         * which is noted as being under the Apache license. 
+         * @param {FileObject} importFile the file that we want to import, as a
+         * file object
+         */
+        parseXlsx: function( importFile ) {
+            var xlsx = importFile.target.result;
+            var spreadsht = require('jsxlsx');
+           
+            var wb = spreadsht.read(xlsx, {type: 'binary'});
+            var sht;
+            //grabs first sheet in associative array, whatever that is
+            //probably need to change this to grab appropriately named sheet based on
+            //current table being viewed in the app.
+            sht = wb.Sheets[wb.SheetNames[0]];
+            var csvWb = spreadsht.utils.sheet_to_csv(sht);
+            return CSV.parse(csvWb);
         },
         
         

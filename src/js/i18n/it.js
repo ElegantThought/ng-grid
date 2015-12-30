@@ -51,6 +51,9 @@
           exporterAllAsCsv: 'Esporta tutti i dati in CSV',
           exporterVisibleAsCsv: 'Esporta i dati visibili in CSV',
           exporterSelectedAsCsv: 'Esporta i dati selezionati in CSV',
+          exporterAllAsXlsx: 'Esporta tutti i dati in XLSX',
+          exporterVisibleAsXlsx: 'Esporta i dati visibili in XLSX',
+          exporterSelectedAsXlsx: 'Esporta i dati selezionati in XLSX',
           exporterAllAsPdf: 'Esporta tutti i dati in PDF',
           exporterVisibleAsPdf: 'Esporta i dati visibili in PDF',
           exporterSelectedAsPdf: 'Esporta i dati selezionati in PDF'

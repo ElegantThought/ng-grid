@@ -51,6 +51,9 @@
           exporterAllAsCsv: 'Exportera all data som CSV',
           exporterVisibleAsCsv: 'Exportera synlig data som CSV',
           exporterSelectedAsCsv: 'Exportera markerad data som CSV',
+          exporterAllAsXlsx: 'Exportera all data som XLSX',
+          exporterVisibleAsXlsx: 'Exportera synlig data som XLSX',
+          exporterSelectedAsXlsx: 'Exportera markerad data som XLSX',
           exporterAllAsPdf: 'Exportera all data som PDF',
           exporterVisibleAsPdf: 'Exportera synlig data som PDF',
           exporterSelectedAsPdf: 'Exportera markerad data som PDF'

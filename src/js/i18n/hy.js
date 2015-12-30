@@ -51,6 +51,9 @@
           exporterAllAsCsv: 'Արտահանել ամբողջը CSV',
           exporterVisibleAsCsv: 'Արտահանել երևացող տվյալները CSV',
           exporterSelectedAsCsv: 'Արտահանել ընտրված տվյալները CSV',
+          exporterAllAsXlsx: 'Արտահանել ամբողջը XLSX',
+          exporterVisibleAsXlsx: 'Արտահանել երևացող տվյալները XLSX',
+          exporterSelectedAsXlsx: 'Արտահանել ընտրված տվյալները XLSX',
           exporterAllAsPdf: 'Արտահանել PDF',
           exporterVisibleAsPdf: 'Արտահանել երևացող տվյալները PDF',
           exporterSelectedAsPdf: 'Արտահանել ընտրված տվյալները PDF'

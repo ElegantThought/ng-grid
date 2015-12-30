@@ -51,6 +51,9 @@
           exporterAllAsCsv: 'Vie tiedot csv-muodossa',
           exporterVisibleAsCsv: 'Vie näkyvä tieto csv-muodossa',
           exporterSelectedAsCsv: 'Vie valittu tieto csv-muodossa',
+          exporterAllAsXlsx: 'Vie tiedot xlsx-muodossa',
+          exporterVisibleAsXlsx: 'Vie näkyvä tieto xlsx-muodossa',
+          exporterSelectedAsXlsx: 'Vie valittu tieto xlsx-muodossa',
           exporterAllAsPdf: 'Vie tiedot pdf-muodossa',
           exporterVisibleAsPdf: 'Vie näkyvä tieto pdf-muodossa',
           exporterSelectedAsPdf: 'Vie valittu tieto pdf-muodossa'

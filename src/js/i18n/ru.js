@@ -47,6 +47,9 @@
           exporterAllAsCsv: 'Экспортировать всё в CSV',
           exporterVisibleAsCsv: 'Экспортировать видимые данные в CSV',
           exporterSelectedAsCsv: 'Экспортировать выбранные данные в CSV',
+          exporterAllAsXlsx: 'Экспортировать всё в XLSX',
+          exporterVisibleAsXlsx: 'Экспортировать видимые данные в XLSX',
+          exporterSelectedAsXlsx: 'Экспортировать выбранные данные в XLSX',
           exporterAllAsPdf: 'Экспортировать всё в PDF',
           exporterVisibleAsPdf: 'Экспортировать видимые данные в PDF',
           exporterSelectedAsPdf: 'Экспортировать выбранные данные в PDF'
